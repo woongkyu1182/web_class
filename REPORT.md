@@ -10,7 +10,7 @@
 
 ## 1. 인수 검수표
 
-> F-01~F-06 캡처는 로컬 서버에서 창 너비 1280px로, Q-HTML·Q-CSS·Q-DEPLOY 검사는 배포 URL(https://woongsigi.smu.ai.kr/)에서 진행했습니다.
+> F-01~F-06 캡처는 로컬 서버에서 창 너비 1280px로, Q-HTML·Q-CSS·Q-DEPLOY 검사와 A-01~A-03의 최종 확인은 배포 URL(https://woongsigi.smu.ai.kr/)에서 진행했습니다.
 
 | ID | 확인 방법 | 결과 | 근거 |
 |---|---|---|---|
@@ -23,7 +23,7 @@
 
 | Q-HTML | W3C HTML 검사기(https://validator.w3.org/)로 배포 URL 검사 → "No errors or warnings to show"(오류 0, 경고 0). 소스 확인: DOCTYPE, `lang="ko"`, charset, title, header/main/section/footer/nav, 표(`caption`·`th scope`), 목록 사용 | Pass | [검사 결과 캡처](images/check_QHTML.jpg) |
 
-| Q-CSS | W3C CSS 검사기(https://jigsaw.w3.org/css-validator/)로 배포 URL 검사 → 오류 0(경고 3건은 CSS 변수는 정적 검사하지 않는다는 안내). 인라인 style 사용 여부 확인(`style=` 속성 0개, `<style>` 태그 0개, 외부 `style.css` 사용) + 창 크기 변경 확인(너비 640px에서도 배치 유지) | Pass | [CSS 검사 결과](images/check_QCSS_w3c.jpg), [640px 캡처](images/check_QCSS.png) |
+| Q-CSS | W3C CSS 검사기(https://jigsaw.w3.org/css-validator/)로 배포 URL 검사 → 오류 0(경고 6건은 CSS 변수는 정적 검사하지 않는다는 안내 3건과 진행 막대의 브라우저 전용 선택자 안내 3건으로 오류가 아님). 인라인 style 사용 여부 확인(`style=` 속성 0개, `<style>` 태그 0개, 외부 `style.css` 사용) + 창 크기 변경 확인(너비 640px에서도 배치 유지) | Pass | [CSS 검사 결과](images/check_QCSS_w3c.jpg), [640px 캡처](images/check_QCSS.png) |
 
 | Q-DEPLOY | 배포 URL에서 모든 링크 클릭, 모든 이미지 표시 확인. 이력서 페이지(이미지 없음)와 링크(GitHub, 실습 5페이지, 폰트)는 모두 정상(HTTP 200). 그러나 5주차 실습 페이지(doc03.html)의 외부 링크 `http://mm.sm.ac.kr`은 도메인이 존재하지 않아 열리지 않음(DNS 조회 실패). 6주차 등 나머지 실습 페이지의 이미지·링크는 정상 | Fail (깨진 링크 1건) | [이력서 배포 화면](images/check_QDEPLOY.png), [5주차 페이지](images/check_QDEPLOY_doc03.png) |
 
@@ -63,8 +63,6 @@
 
 | ID | 확인 방법 | 결과 | 근거 |
 |---|---|---|---|
-| A-01 | Chrome으로 로컬 페이지를 PDF로 인쇄(`--print-to-pdf`, A4)하고 `pdftotext`로 확인: ① 페이지 수 2 ② 텍스트에 "F-0X"가 0건이고 목차·라벨 숨김 확인 ③ 인쇄 규칙을 적용한 미리보기에서 흰 배경·검은 글자 확인(분류 태그도 흑백으로 정리) ④ 실적 시기 9건, 수강 과목 6개 일치, 주차 15개, "최종 수정일: 2026-10-20", "진행 7/15주 (47%)" 모두 포함 | Pass | [인쇄 PDF](images/check_A01_print.pdf), [인쇄 규칙 적용 미리보기](images/check_A01_print_preview.png) |
-| A-02 | `index.html` 소스에서 ①~③ 확인(title, description, og:title/og:description/og:url, `data:` 파비콘 각 1개) ④ W3C HTML 검사기(https://validator.w3.org/nu/)에 소스를 보내 검사 → 오류 0, 경고 0 | Pass | `index.html` `<head>`, W3C 검사 결과(메시지 0건) |
-| A-03 | 브라우저에서 F-05 영역 확인: ① "진행 7/15주 (47%)" 문구 표시 ② `<progress value="7" max="15">` 확인 ③ 진행(`class="done"`) 주차가 1~7주차 7개로 N과 일치 ④ 7÷15=46.7% → 반올림 47 | Pass | [캡처](images/check_A03_progress.png) |
-
-> A-01~A-03은 로컬에서 먼저 확인했습니다. 배포 URL에는 푸시 후 반영됩니다.
+| A-01 | 배포 URL을 Chrome으로 PDF 인쇄(`--print-to-pdf`, A4)하고 `pdftotext`로 확인: ① 페이지 수 2 ② 텍스트에 "F-0X"가 0건이고 목차·라벨 숨김 확인 ③ 인쇄 규칙을 적용한 미리보기에서 흰 배경·검은 글자 확인(분류 태그도 흑백으로 정리) ④ 실적 시기 9건, 수강 과목 6개 일치, 주차 15개, "최종 수정일: 2026-10-20", "진행 7/15주 (47%)" 모두 포함. 비고: 첫 배포 직후에는 서버 캐시 때문에 이전 CSS가 내려가 3쪽·라벨 6건이 나왔고, CSS 링크에 버전 쿼리(`style.css?v=20261020`)를 붙여 해결한 뒤 위 결과를 확인함 | Pass | [배포 URL 인쇄 PDF](images/check_A01_print.pdf), [인쇄 규칙 적용 미리보기](images/check_A01_print_preview.png) |
+| A-02 | 배포 URL의 소스를 받아 ①~③ 확인(`<title>`, `meta description`, `og:title`/`og:description`/`og:url`, `data:` 파비콘이 각 1개) ④ W3C HTML 검사기로 배포 URL 검사 → 오류 0, 경고 0 | Pass | [W3C HTML 검사 결과](images/check_QHTML.jpg) |
+| A-03 | 배포 URL의 F-05 영역 확인: ① "진행 7/15주 (47%)" 문구 표시 ② `<progress value="7" max="15">` 확인 ③ 진행(`class="done"`) 주차가 1~7주차 7개로 N과 일치 ④ 7÷15=46.7% → 반올림 47 | Pass | [캡처](images/check_A03_progress.png) |
