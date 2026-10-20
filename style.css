@@ -324,7 +324,7 @@ footer .badge { margin-bottom: 8px; }
     th { color: #000; background: #eee; }
     th, td { padding: 4px 8px; }
     td:first-child { color: #000; }
-    .tag { color: #000; background: none; border: 1px solid #000; padding: 0 6px; }
+    .tag, .tag.project, .tag.award, .tag.license, .tag.activity, .tag.education, .tag.major, .tag.general { color: #000; background: none; border: 1px solid #000; padding: 0 6px; }
     tr { break-inside: avoid; }
 
     .course-list li, .weeks .done, .weeks .planned { background: none; border: 1px solid #999; }
