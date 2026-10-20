@@ -213,6 +213,28 @@ td:first-child {
 }
 .course-list a { font-weight: 700; }
 
+/* F-05 진행률 */
+.progress-text {
+    margin: -8px 0 6px;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+.progress-text strong { color: var(--primary); }
+.progress-bar {
+    display: block;
+    width: 100%;
+    height: 10px;
+    margin-bottom: 20px;
+    border: 0;
+    border-radius: 999px;
+    overflow: hidden;
+    appearance: none;
+    background: var(--done-bg);
+}
+.progress-bar::-webkit-progress-bar { background: var(--done-bg); }
+.progress-bar::-webkit-progress-value { background: var(--primary); border-radius: 999px; }
+.progress-bar::-moz-progress-bar { background: var(--primary); border-radius: 999px; }
+
 /* F-05 주차별 링크 */
 .legend {
     margin: -8px 0 16px;
