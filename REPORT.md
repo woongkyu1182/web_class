@@ -10,7 +10,7 @@
 
 ## 1. 인수 검수표
 
-> F-01~F-06 캡처는 로컬 서버에서 창 너비 1280px로, Q-HTML·Q-CSS·Q-DEPLOY 검사와 A-01~A-03의 최종 확인은 배포 URL(https://woongsigi.smu.ai.kr/)에서 진행했습니다.
+> 모든 캡처와 검사는 배포 URL(https://woongsigi.smu.ai.kr/)에서 진행했습니다. 캡처는 창 너비 1280px이고, Q-CSS의 창 크기 변경 확인용 캡처만 640px입니다.
 
 | ID | 확인 방법 | 결과 | 근거 |
 |---|---|---|---|
@@ -20,11 +20,8 @@
 | F-04 | ① 수강 과목 6개(웹프로그래밍 및 AI에이전트 활용, 영상처리, 심층학습, 선형대수학, 과학기술자의직업윤리, AI시대의컬처리터러시)가 표시되는지 확인 ② 각 과목에 전공/교양 표시 확인 ③ 「웹프로그래밍 및 AI에이전트 활용」이 `#f05`(F-05 영역)로 이동하는 링크인지 확인 | Pass | [캡처](images/check_F04.png) |
 | F-05 | ① 1~15주차가 모두 표시되는지 확인 ② 실습을 진행한 주차(2·3·5·6·7주차)의 링크 5개(doc1, doc2, doc03, doc04, doc05)가 모두 존재하는 파일로 연결(HTTP 200)됨을 확인. 1주차(오리엔테이션)·4주차(휴강)는 실습을 진행하지 않아 이동할 실습 페이지가 없음 ③ 예정 주차(8~15주)가 "예정"으로 표시되고 링크가 없는지 확인 ④ 진행(파란색 카드)과 예정(회색 점선 카드)이 색으로 구분되는지 확인 | Pass | [주차 목록](images/check_F05.png), 이동한 실습 페이지: [2주차](images/check_F05_week2.png) · [3주차](images/check_F05_week3.png) · [5주차](images/check_F05_week5.png) · [6주차](images/check_F05_week6.png) · [7주차](images/check_F05_week7.png) |
 | F-06 | ① footer에 "최종 수정일: 2026-10-20" 형식으로 표시되는지 확인 ② 표시된 날짜를 저장소의 마지막 커밋 날짜(`git log -1`)와 비교 | Pass | [캡처](images/check_F06.png) |
-
 | Q-HTML | W3C HTML 검사기(https://validator.w3.org/)로 배포 URL 검사 → "No errors or warnings to show"(오류 0, 경고 0). 소스 확인: DOCTYPE, `lang="ko"`, charset, title, header/main/section/footer/nav, 표(`caption`·`th scope`), 목록 사용 | Pass | [검사 결과 캡처](images/check_QHTML.jpg) |
-
 | Q-CSS | W3C CSS 검사기(https://jigsaw.w3.org/css-validator/)로 배포 URL 검사 → 오류 0(경고 6건은 CSS 변수는 정적 검사하지 않는다는 안내 3건과 진행 막대의 브라우저 전용 선택자 안내 3건으로 오류가 아님). 인라인 style 사용 여부 확인(`style=` 속성 0개, `<style>` 태그 0개, 외부 `style.css` 사용) + 창 크기 변경 확인(너비 640px에서도 배치 유지) | Pass | [CSS 검사 결과](images/check_QCSS_w3c.jpg), [640px 캡처](images/check_QCSS.png) |
-
 | Q-DEPLOY | 배포 URL에서 모든 링크 클릭, 모든 이미지 표시 확인. 이력서 페이지와 연결된 실습 5페이지의 모든 링크·이미지를 확인(HTTP 200): 이력서의 GitHub·실습 5페이지·CSS·폰트, 3주차(doc2)의 이미지(image1.jpg)와 외부 링크, 7주차(doc05)의 도서관 검색 주소. 이력서 페이지에는 이미지가 없음. 검수 중 5주차 실습 페이지(doc03.html)의 외부 링크 `http://mm.sm.ac.kr`이 도메인 없음으로 열리지 않아 Fail이었으나, 해당 페이지를 외부 링크 없는 참고도서 목록으로 교체한 뒤 재확인하여 깨진 링크·이미지 0건 | Pass | [이력서 배포 화면](images/check_QDEPLOY.png), [수정된 5주차 페이지](images/check_QDEPLOY_doc03.png) |
 
 ---
@@ -63,6 +60,6 @@
 
 | ID | 확인 방법 | 결과 | 근거 |
 |---|---|---|---|
-| A-01 | 배포 URL을 Chrome으로 PDF 인쇄(`--print-to-pdf`, A4)하고 `pdftotext`로 확인: ① 페이지 수 2 ② 텍스트에 "F-0X"가 0건이고 목차·라벨 숨김 확인 ③ 인쇄 규칙을 적용한 미리보기에서 흰 배경·검은 글자 확인(분류 태그도 흑백으로 정리) ④ 실적 시기 9건, 수강 과목 6개 일치, 주차 15개, "최종 수정일: 2026-10-20", "진행 7/15주 (47%)" 모두 포함. 비고: 첫 배포 직후에는 서버 캐시 때문에 이전 CSS가 내려가 3쪽·라벨 6건이 나왔고, CSS 링크에 버전 쿼리(`style.css?v=20261020`)를 붙여 해결한 뒤 위 결과를 확인함 | Pass | [배포 URL 인쇄 PDF](images/check_A01_print.pdf), [인쇄 규칙 적용 미리보기](images/check_A01_print_preview.png) |
+| A-01 | 배포 URL을 Chrome으로 PDF 인쇄(`--print-to-pdf`, A4)하고 `pdftotext`로 확인: ① 페이지 수 2 ② 텍스트에 "F-0X"가 0건이고 목차·라벨 숨김 확인 ③ 인쇄된 PDF를 열어 흰 배경·검은 글자 확인(분류 태그도 흑백으로 정리) ④ 실적 시기 9건, 수강 과목 6개 일치, 주차 15개, "최종 수정일: 2026-10-20", "진행 7/15주 (47%)" 모두 포함. 비고: 첫 배포 직후에는 서버 캐시 때문에 이전 CSS가 내려가 3쪽·라벨 6건이 나왔고, CSS 링크에 버전 쿼리(`style.css?v=20261020`)를 붙여 해결한 뒤 위 결과를 확인함 | Pass | [배포 URL 인쇄 PDF](images/check_A01_print.pdf), [PDF를 열어 캡처한 화면](images/check_A01_print_view.jpg) |
 | A-02 | 배포 URL의 소스를 받아 ①~③ 확인(`<title>`, `meta description`, `og:title`/`og:description`/`og:url`, `data:` 파비콘이 각 1개) ④ W3C HTML 검사기로 배포 URL 검사 → 오류 0, 경고 0 | Pass | [W3C HTML 검사 결과](images/check_QHTML.jpg) |
 | A-03 | 배포 URL의 F-05 영역 확인: ① "진행 7/15주 (47%)" 문구 표시 ② `<progress value="7" max="15">` 확인 ③ 진행(`class="done"`) 주차가 1~7주차 7개로 N과 일치 ④ 7÷15=46.7% → 반올림 47 | Pass | [캡처](images/check_A03_progress.png) |
