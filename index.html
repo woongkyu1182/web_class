@@ -1,9 +1,228 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <h1>안녕하세요.</h1>
-    </head>
-    <body>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인 이력서</title>
+    <meta name="description" content="상명대학교 소프트웨어학과 1학년 개인 이력서">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    </body>
+<!-- ==========================================================
+     HEADER  (F-01 소개 / F-02 연락 채널)
+     ========================================================== -->
+<header id="top">
+    <div class="container header-inner">
+
+        <!-- F-01 소개 : 활동명 / 소속 / 한 줄 소개 -->
+        <div class="profile" id="f01">
+            <p class="badge">F-01 · 소개</p>
+            <!-- [직접 입력] 활동명 (실명 금지) -->
+            <h1>woongsigi</h1>
+            <p class="affiliation">상명대학교 소프트웨어학과 3학년</p>
+            <!-- [직접 입력] 관심 분야를 담은 한 줄 소개 (1문장, 50자 이내) -->
+            <p class="intro">금융 데이터 속 의미있는 가치를 발견하는 것을 좋아합니다.</p>
+        </div>
+
+        <!-- F-02 연락 채널 : GitHub 링크 1개만 (이메일·전화번호 등 금지) -->
+        <div class="contact" id="f02">
+            <p class="badge">F-02 · 연락 채널</p>
+            <!-- [직접 입력] href를 본인 GitHub 프로필 주소로 수정 -->
+            <a class="button" href="https://github.com/woongkyu1182" target="_blank" rel="noopener">GitHub 프로필 보기 →</a>
+        </div>
+
+    </div>
+
+    <nav class="container" aria-label="페이지 내 이동">
+        <ul>
+            <li><a href="#f03">실적</a></li>
+            <li><a href="#f04">수강 과목</a></li>
+            <li><a href="#f05">주차별 실습</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="container">
+
+    <!-- ==========================================================
+         F-03 실적 목록 (표 / 시기 역순 / 4건 이상 / 중·고등학교 시절 1건 이상)
+         ========================================================== -->
+    <section id="f03" aria-labelledby="f03-title">
+        <p class="badge">F-03</p>
+        <h2 id="f03-title">실적</h2>
+        <div class="table-wrap">
+            <table>
+                <caption>실적 목록</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">시기</th>
+                        <th scope="col">분류</th>
+                        <th scope="col">내용</th>
+                        <th scope="col">본인 역할</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--
+                        [직접 입력] 규칙
+                        - 시기: YYYY.MM  / 최신이 맨 위
+                        - 분류: 프로젝트 · 수상 · 자격 · 활동 · 교육 중 하나
+                        - 학교명·실명 금지 (예: "고등학교 SW동아리")
+                        - 분류 span의 class: project / award / license / activity / education
+                          (분류에 맞춰 class와 글자를 함께 바꾸세요)
+                    -->
+                    <tr>
+                        <td>2026.09</td>
+                        <td><span class="tag license">자격</span></td>
+                        <td>SQLD 자격증</td>
+                        <td>자격 취득</td>
+                    </tr>
+                    <tr>
+                        <td>2026.08</td>
+                        <td><span class="tag license">자격</span></td>
+                        <td>ADSP 자격증</td>
+                        <td>자격 취득</td>
+                    </tr>
+                    <tr>
+                        <td>2026.03</td>
+                        <td><span class="tag activity">활동</span></td>
+                        <td>대학 독서 토론 동아리활동(진행중)</td>
+                        <td>운영진(총무)</td>
+                    </tr>
+                    <tr>
+                        <td>2025.03</td>
+                        <td><span class="tag activity">활동</span></td>
+                        <td>대학 풋살 동아리활동(1년)</td>
+                        <td>동아리 부원</td>
+                    </tr>
+                    <tr>
+                        <td>2024.12</td>
+                        <td><span class="tag education">교육</span></td>
+                        <td>코리아 IT 아카데미 백엔드 교육 과정 수료(3개월) </td>
+                        <td>학원 수강생</td>
+                    </tr>
+                    <tr>
+                        <td>2024.11</td>
+                        <td><span class="tag project">프로젝트</span></td>
+                        <td>클라이머용 정보 공유 및 커뮤니티 웹사이트 제작 </td>
+                        <td>자료조사, 게시판 제작 </td>
+                    </tr>
+                    <tr>
+                        <td>2017.11</td>
+                        <td><span class="tag award">수상</span></td>
+                        <td>대전광역시 자원봉사 우수학생 표창</td>
+                        <td>자원봉사자</td>
+                    </tr>
+                    <tr>
+                        <td>2017.11</td>
+                        <td><span class="tag award">수상</span></td>
+                        <td>제38회 청운령 축제(전시부문, 공동수상, 19인) 은상(2위)</td>
+                        <td>참가 학생</td>
+                    </tr>
+                    <tr>
+                        <td>2017.07</td>
+                        <td><span class="tag award">수상</span></td>
+                        <td>교내 양성평등 글짓기 활동 동상(3위)</td>
+                        <td>참가 학생</td>
+                    </tr>
+                    <!-- 중·고등학교 시절 실적 1건 이상 필수 -->
+                    <!-- 실적을 더 추가하려면 위 <tr> 블록을 복사해서 시기 순서에 맞게 끼워 넣으세요 -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ==========================================================
+         F-04 수강 과목 (2026-2학기 전체 / 과목명 + 이수 구분)
+         ========================================================== -->
+    <section id="f04" aria-labelledby="f04-title">
+        <p class="badge">F-04</p>
+        <h2 id="f04-title">수강 과목 <span class="sub">2026-2학기</span></h2>
+        <ul class="course-list">
+            <!-- 본 과목 : F-05 영역으로 이동하는 링크 -->
+            <li>
+                <a href="#f05">웹프로그래밍 및 AI에이전트 활용</a>
+                <span class="tag major">전공</span>
+            </li>
+            <!-- [직접 입력] 이번 학기 나머지 수강 과목을 모두 추가 (전공 → class="tag major" / 교양 → class="tag general") -->
+            <li>
+                <span class="course-name">영상처리</span>
+                <span class="tag major">전공</span>
+            </li>
+            <li>
+                <span class="course-name">심층학습</span>
+                <span class="tag major">전공</span>
+            </li>
+            <li>
+                <span class="course-name">선형대수학</span>
+                <span class="tag major">전공</span>
+            </li>
+            <li>
+                <span class="course-name">과학기술자의직업윤리</span>
+                <span class="tag general">교양</span>
+            </li>
+            <li>
+                <span class="course-name">AI시대의컬처리터러시</span>
+                <span class="tag general">교양</span>
+            </li>
+            <!--
+            <li>
+                <span class="course-name">과목명</span>
+                <span class="tag major">전공</span>
+            </li>
+            -->
+        </ul>
+    </section>
+
+    <!-- ==========================================================
+         F-05 본 과목 주차별 링크 (1~15주차 / 진행 = 링크 / 예정 = 링크 없음)
+         ========================================================== -->
+    <section id="f05" aria-labelledby="f05-title">
+        <p class="badge">F-05</p>
+        <h2 id="f05-title">웹프로그래밍 주차별 실습</h2>
+        <p class="legend">
+            <span class="dot done-dot"></span> 진행 (클릭하면 실습 페이지로 이동)
+            <span class="dot planned-dot"></span> 예정
+        </p>
+        <ol class="weeks">
+            <!-- [직접 입력] 진행한 주차: class="done" + 실습 페이지 경로(href) 수정 -->
+            <li class="done"><a><span class="num">1</span>주차<br>오리엔테이션</a></li>
+            <li class="done"><a href="doc1.html"><span class="num">2</span>주차</a></li>
+            <li class="done"><a href="doc2.html"><span class="num">3</span>주차</a></li>
+            <li class="done"><a><span class="num">4</span>주차<br>휴강</a></li>
+            <li class="done"><a href="doc03.html"><span class="num">5</span>주차</a></li>
+            <li class="done"><a href="doc04.html"><span class="num">6</span>주차</a></li>
+            <li class="done"><a href="doc05.html"><span class="num">7</span>주차</a></li>
+            <!-- 예정 주차: 링크 없음. 진행하면 아래처럼 교체
+                 <li class="done"><a href="week08.html"><span class="num">8</span>주차</a></li> -->
+            <li class="planned"><span class="num">8</span>주차 <em>(예정)</em></li>
+            <li class="planned"><span class="num">9</span>주차 <em>(예정)</em></li>
+            <li class="planned"><span class="num">10</span>주차 <em>(예정)</em></li>
+            <li class="planned"><span class="num">11</span>주차 <em>(예정)</em></li>
+            <li class="planned"><span class="num">12</span>주차 <em>(예정)</em></li>
+            <li class="planned"><span class="num">13</span>주차 <em>(예정)</em></li>
+            <li class="planned"><span class="num">14</span>주차 <em>(예정)</em></li>
+            <li class="planned"><span class="num">15</span>주차 <em>(예정)</em></li>
+        </ol>
+    </section>
+
+    <!-- [선택·가산점] 추가 요구사항(A-01~)을 구현했다면 여기에 <section id="a01"> 추가 -->
+
+</main>
+
+<!-- ==========================================================
+     FOOTER  (F-06 최종 수정일)
+     ========================================================== -->
+<footer id="f06">
+    <div class="container">
+        <p class="badge">F-06 · 최종 수정일</p>
+        <!-- [직접 입력] 배포 저장소의 마지막 커밋 날짜와 같게 -->
+        <p>최종 수정일: 2026-10-20</p>
+    </div>
+</footer>
+
+</body>
 </html>
