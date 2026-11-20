@@ -30,6 +30,153 @@
 
 <main>
 
+    <!-- 카페 내부 일러스트 (SVG). 색과 움직임은 style.css의 s- 로 시작하는 클래스가 정한다. -->
+    <figure class="scene">
+        <svg class="scene-art" viewBox="0 0 800 440" role="img" aria-label="새벽 하늘이 보이는 창가 자리와 카운터, 테이블이 있는 달빛 카페 내부 그림">
+            <defs>
+                <linearGradient id="sky-grad" x1="0" y1="0" x2="0" y2="1">
+                    <stop class="sky-a" offset="0"/>
+                    <stop class="sky-b" offset="0.55"/>
+                    <stop class="sky-c" offset="1"/>
+                </linearGradient>
+                <clipPath id="win-clip">
+                    <rect x="72" y="52" width="306" height="226" rx="4"/>
+                </clipPath>
+            </defs>
+
+            <!-- 벽과 바닥 -->
+            <rect class="s-wall" x="0" y="0" width="800" height="440"/>
+            <rect class="s-floor" x="0" y="345" width="800" height="95"/>
+            <rect class="s-base" x="0" y="338" width="800" height="9"/>
+            <polygon class="s-lightpatch" points="92,347 362,347 420,440 30,440"/>
+
+            <!-- 창문: 새벽 하늘 -->
+            <rect class="s-frame" x="56" y="36" width="338" height="258" rx="10"/>
+            <g clip-path="url(#win-clip)">
+                <rect class="s-sky" x="72" y="52" width="306" height="226"/>
+                <circle class="s-moon-halo" cx="312" cy="104" r="46"/>
+                <circle class="s-moon" cx="312" cy="104" r="20"/>
+                <g class="s-stars">
+                    <circle class="s-star" cx="98" cy="76" r="1.8"/>
+                    <circle class="s-star" cx="130" cy="110" r="1.3"/>
+                    <circle class="s-star" cx="160" cy="72" r="2"/>
+                    <circle class="s-star" cx="196" cy="98" r="1.3"/>
+                    <circle class="s-star" cx="246" cy="70" r="1.8"/>
+                    <circle class="s-star" cx="268" cy="126" r="1.3"/>
+                    <circle class="s-star" cx="344" cy="70" r="1.5"/>
+                    <circle class="s-star" cx="110" cy="138" r="1.3"/>
+                    <circle class="s-star" cx="178" cy="140" r="1.8"/>
+                    <circle class="s-star" cx="284" cy="84" r="1.3"/>
+                    <circle class="s-star" cx="96" cy="176" r="1.5"/>
+                    <circle class="s-star" cx="150" cy="192" r="1.3"/>
+                    <circle class="s-star" cx="256" cy="178" r="1.8"/>
+                    <circle class="s-star" cx="336" cy="190" r="1.3"/>
+                </g>
+                <g class="s-cloud">
+                    <ellipse cx="140" cy="214" rx="46" ry="8"/>
+                    <ellipse cx="172" cy="208" rx="30" ry="7"/>
+                </g>
+                <g class="s-cloud s-cloud-b">
+                    <ellipse cx="300" cy="196" rx="40" ry="7"/>
+                    <ellipse cx="326" cy="190" rx="24" ry="6"/>
+                </g>
+                <path class="s-hill-far" d="M72 278V236C112 214 160 224 206 236C252 246 300 222 378 238V278Z"/>
+                <path class="s-hill-near" d="M72 278V258C130 242 190 264 250 258C310 252 340 264 378 256V278Z"/>
+            </g>
+            <rect class="s-frame" x="222" y="52" width="6" height="226"/>
+            <rect class="s-frame" x="72" y="150" width="306" height="6"/>
+            <rect class="s-sill" x="46" y="294" width="358" height="12" rx="3"/>
+
+            <!-- 창가 자리 -->
+            <rect class="s-wood" x="64" y="336" width="322" height="52" rx="4"/>
+            <rect class="s-cushion" x="60" y="306" width="330" height="32" rx="12"/>
+            <rect class="s-pillow-a" x="84" y="286" width="46" height="34" rx="12"/>
+            <rect class="s-pillow-b" x="330" y="288" width="44" height="32" rx="12"/>
+
+            <!-- 천장 조명 -->
+            <g class="s-lamp">
+                <line class="s-cord" x1="500" y1="0" x2="500" y2="58"/>
+                <circle class="s-lamp-glow" cx="500" cy="92" r="30"/>
+                <path class="s-shade" d="M480 86L490 62Q500 54 510 62L520 86Z"/>
+            </g>
+            <g class="s-lamp s-lamp-b">
+                <line class="s-cord" x1="620" y1="0" x2="620" y2="58"/>
+                <circle class="s-lamp-glow" cx="620" cy="92" r="30"/>
+                <path class="s-shade" d="M600 86L610 62Q620 54 630 62L640 86Z"/>
+            </g>
+            <g class="s-lamp s-lamp-c">
+                <line class="s-cord" x1="740" y1="0" x2="740" y2="58"/>
+                <circle class="s-lamp-glow" cx="740" cy="92" r="30"/>
+                <path class="s-shade" d="M720 86L730 62Q740 54 750 62L760 86Z"/>
+            </g>
+
+            <!-- 선반 -->
+            <rect class="s-shelf" x="470" y="134" width="300" height="8" rx="2"/>
+            <rect class="s-jar" x="486" y="102" width="22" height="32" rx="4"/>
+            <rect class="s-jar-lid" x="484" y="96" width="26" height="8" rx="3"/>
+            <rect class="s-jar" x="520" y="110" width="18" height="24" rx="4"/>
+            <rect class="s-jar-lid" x="518" y="105" width="22" height="7" rx="3"/>
+            <rect class="s-mug" x="572" y="116" width="20" height="18" rx="3"/>
+            <rect class="s-mug" x="598" y="116" width="20" height="18" rx="3"/>
+            <rect class="s-book-a" x="660" y="108" width="14" height="26" rx="2"/>
+            <rect class="s-book-b" x="676" y="114" width="12" height="20" rx="2"/>
+            <rect class="s-book-c" x="690" y="106" width="15" height="28" rx="2"/>
+            <rect class="s-pot" x="730" y="118" width="22" height="16" rx="3"/>
+            <ellipse class="s-leaf" cx="736" cy="108" rx="5" ry="11" transform="rotate(-18 736 108)"/>
+            <ellipse class="s-leaf s-leaf-b" cx="747" cy="108" rx="5" ry="11" transform="rotate(18 747 108)"/>
+
+            <!-- 카운터 -->
+            <rect class="s-counter" x="452" y="276" width="348" height="110"/>
+            <rect class="s-slat" x="500" y="284" width="5" height="94"/>
+            <rect class="s-slat" x="560" y="284" width="5" height="94"/>
+            <rect class="s-slat" x="620" y="284" width="5" height="94"/>
+            <rect class="s-slat" x="680" y="284" width="5" height="94"/>
+            <rect class="s-slat" x="740" y="284" width="5" height="94"/>
+            <rect class="s-counter-top" x="446" y="262" width="354" height="14" rx="3"/>
+
+            <!-- 카운터 위: 케이크 돔, 컵, 에스프레소 머신 -->
+            <rect class="s-dome-base" x="540" y="256" width="68" height="7" rx="2"/>
+            <path class="s-dome" d="M546 256a28 24 0 0 1 56 0Z"/>
+            <rect class="s-cake" x="556" y="242" width="36" height="13" rx="3"/>
+            <rect class="s-mug" x="478" y="244" width="18" height="18" rx="3"/>
+            <rect class="s-mug" x="504" y="244" width="18" height="18" rx="3"/>
+            <rect class="s-machine" x="660" y="206" width="96" height="56" rx="8"/>
+            <rect class="s-machine-top" x="656" y="198" width="104" height="12" rx="5"/>
+            <rect class="s-machine-detail" x="676" y="236" width="10" height="14" rx="2"/>
+            <rect class="s-machine-detail" x="726" y="236" width="10" height="14" rx="2"/>
+            <circle class="s-gauge" cx="708" cy="224" r="7"/>
+            <rect class="s-machine-detail" x="668" y="256" width="80" height="6" rx="2"/>
+
+            <!-- 바닥의 화분 -->
+            <ellipse class="s-leaf" cx="424" cy="326" rx="9" ry="22" transform="rotate(-22 424 326)"/>
+            <ellipse class="s-leaf s-leaf-b" cx="438" cy="324" rx="9" ry="22" transform="rotate(20 438 324)"/>
+            <ellipse class="s-leaf" cx="431" cy="320" rx="8" ry="22"/>
+            <rect class="s-pot" x="414" y="346" width="34" height="38" rx="5"/>
+
+            <!-- 테이블과 의자 -->
+            <rect class="s-chair" x="154" y="350" width="6" height="52"/>
+            <rect class="s-chair" x="154" y="350" width="34" height="8" rx="3"/>
+            <rect class="s-chair" x="154" y="394" width="48" height="8" rx="3"/>
+            <rect class="s-chair" x="158" y="402" width="5" height="26"/>
+            <rect class="s-chair" x="194" y="402" width="5" height="26"/>
+
+            <rect class="s-chair" x="342" y="350" width="6" height="52"/>
+            <rect class="s-chair" x="314" y="350" width="34" height="8" rx="3"/>
+            <rect class="s-chair" x="300" y="394" width="48" height="8" rx="3"/>
+            <rect class="s-chair" x="304" y="402" width="5" height="26"/>
+            <rect class="s-chair" x="340" y="402" width="5" height="26"/>
+
+            <ellipse class="s-table-base" cx="250" cy="428" rx="28" ry="6"/>
+            <rect class="s-table-leg" x="246" y="390" width="8" height="38"/>
+            <ellipse class="s-table-top" cx="250" cy="388" rx="62" ry="13"/>
+            <ellipse class="s-plate" cx="274" cy="384" rx="13" ry="4"/>
+            <rect class="s-cake" x="266" y="376" width="16" height="8" rx="2"/>
+            <ellipse class="s-plate" cx="228" cy="386" rx="14" ry="4"/>
+            <rect class="s-mug" x="219" y="372" width="18" height="14" rx="3"/>
+        </svg>
+        <figcaption>해가 뜨기 전, 창가에 달이 머무는 달빛 카페</figcaption>
+    </figure>
+
     <section id="signature" aria-labelledby="signature-title">
         <h2 id="signature-title">시그니처</h2>
         <ul class="signature-list">

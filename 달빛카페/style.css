@@ -16,6 +16,16 @@
     --radius: 14px;
     --gutter: 16px;
     --content: 860px;         /* 본문 최대 폭 */
+
+    /* 일러스트 전용 색 */
+    --dawn-mid: #7c78b4;
+    --wall: #ebe7f3;
+    --floor: #cdc7e0;
+    --wood: #93746b;
+    --wood-dark: #6c5550;
+    --cream: #fbf1e6;
+    --leaf: #7fa38b;
+    --leaf-dark: #5f8870;
     --font: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 }
 
@@ -164,8 +174,8 @@ header nav {
     width: 200%;
     height: 130px;
     background-image:
-        radial-gradient(ellipse 160px 34px at 30% 62%, rgba(255, 255, 255, 0.22), transparent),
-        radial-gradient(ellipse 220px 40px at 75% 40%, rgba(255, 240, 235, 0.2), transparent);
+        radial-gradient(ellipse 28% 26% at 30% 62%, rgba(255, 255, 255, 0.22), transparent),
+        radial-gradient(ellipse 24% 30% at 72% 40%, rgba(255, 240, 235, 0.2), transparent);
     background-size: 50% 100%;
     background-repeat: repeat-x;
     animation: drift 70s linear infinite;
@@ -248,6 +258,127 @@ section h2 {
     font-size: 1.3rem;
     font-weight: 500;
     letter-spacing: 0.06em;
+}
+
+/* ---------- 카페 내부 일러스트 (SVG) ---------- */
+.scene {
+    margin: 8px 0 0;
+}
+
+.scene-art {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: 0 6px 22px rgba(35, 44, 74, 0.12);
+}
+
+.scene figcaption {
+    margin-top: 10px;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    font-weight: 300;
+    text-align: center;
+}
+
+/* 하늘 그라데이션 */
+.sky-a { stop-color: var(--dawn-navy); }
+.sky-b { stop-color: var(--dawn-mid); }
+.sky-c { stop-color: var(--dawn-peach); }
+
+/* 공간 */
+.s-wall { fill: var(--wall); }
+.s-floor { fill: var(--floor); }
+.s-base { fill: var(--wood-dark); }
+.s-lightpatch { fill: var(--dawn-peach); opacity: 0.4; }
+
+/* 창문 */
+.s-frame { fill: var(--dawn-navy); }
+.s-sill { fill: var(--cream); }
+.s-sky { fill: url(#sky-grad); }
+.s-moon { fill: var(--moon); }
+.s-moon-halo {
+    fill: var(--moon);
+    opacity: 0.3;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: glow 9s ease-in-out infinite alternate;
+}
+.s-star {
+    fill: #fff;
+    animation: twinkle 4s ease-in-out infinite alternate;
+}
+.s-star:nth-child(3n) { animation-duration: 6s; animation-delay: 0.8s; }
+.s-star:nth-child(3n + 1) { animation-duration: 5s; animation-delay: 1.6s; }
+.s-star:nth-child(4n) { animation-delay: 2.4s; }
+.s-cloud {
+    fill: #fff;
+    opacity: 0.28;
+    animation: cloud-move 42s ease-in-out infinite alternate;
+}
+.s-cloud-b {
+    animation-duration: 56s;
+    animation-direction: alternate-reverse;
+}
+.s-hill-far { fill: #55528f; }
+.s-hill-near { fill: var(--dawn-navy); }
+
+/* 창가 자리 */
+.s-wood { fill: var(--wood); }
+.s-cushion { fill: var(--cream); }
+.s-pillow-a { fill: var(--dawn-violet); }
+.s-pillow-b { fill: var(--moon); }
+
+/* 조명 */
+.s-cord { stroke: var(--wood-dark); stroke-width: 2; }
+.s-shade { fill: var(--dawn-navy); }
+.s-lamp-glow {
+    fill: var(--moon);
+    opacity: 0.35;
+    animation: lamp-breathe 6s ease-in-out infinite alternate;
+}
+.s-lamp-b .s-lamp-glow { animation-duration: 7.5s; animation-delay: 1.2s; }
+.s-lamp-c .s-lamp-glow { animation-duration: 5.5s; animation-delay: 2.4s; }
+
+/* 선반 */
+.s-shelf { fill: var(--wood-dark); }
+.s-jar { fill: var(--cream); }
+.s-jar-lid { fill: var(--wood); }
+.s-mug { fill: var(--cream); }
+.s-book-a { fill: var(--dawn-navy); }
+.s-book-b { fill: var(--dawn-violet); }
+.s-book-c { fill: var(--dawn-peach); }
+.s-pot { fill: var(--wood); }
+.s-leaf { fill: var(--leaf); }
+.s-leaf-b { fill: var(--leaf-dark); }
+
+/* 카운터 */
+.s-counter { fill: var(--wood); }
+.s-slat { fill: var(--wood-dark); opacity: 0.45; }
+.s-counter-top { fill: var(--wood-dark); }
+.s-dome-base { fill: var(--wood-dark); }
+.s-dome { fill: #fff; opacity: 0.55; }
+.s-cake { fill: var(--dawn-peach); stroke: var(--wood); stroke-width: 1.5; }
+.s-machine { fill: var(--dawn-navy); }
+.s-machine-top { fill: var(--dawn-mid); }
+.s-machine-detail { fill: var(--dawn-violet); }
+.s-gauge { fill: var(--moon); }
+
+/* 테이블과 의자 */
+.s-chair { fill: var(--wood-dark); }
+.s-table-top { fill: var(--cream); stroke: var(--wood); stroke-width: 3; }
+.s-table-leg { fill: var(--wood); }
+.s-table-base { fill: var(--wood-dark); }
+.s-plate { fill: #fff; stroke: var(--dawn-violet); stroke-width: 1.5; }
+
+@keyframes cloud-move {
+    from { transform: translateX(-22px); }
+    to   { transform: translateX(44px); }
+}
+
+@keyframes lamp-breathe {
+    from { opacity: 0.1; }
+    to   { opacity: 0.34; }
 }
 
 /* ---------- 시그니처 ---------- */

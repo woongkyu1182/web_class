@@ -617,7 +617,7 @@
             });
         }, { threshold: 0.12 });
 
-        Array.prototype.forEach.call(document.querySelectorAll('.signature-list li, tbody tr'), function (target) {
+        Array.prototype.forEach.call(document.querySelectorAll('.scene, .signature-list li, tbody tr'), function (target) {
             target.classList.add('reveal');
             observer.observe(target);
         });
