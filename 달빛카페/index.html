@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>달빛 카페</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&amp;display=swap">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+
+</head>
+<body>
+
+<header id="top">
+    <div class="sky" aria-hidden="true">
+        <span class="moon"></span>
+        <span class="mist"></span>
+    </div>
+    <h1>달빛 카페</h1>
+    <p class="intro">새벽 공기처럼 고요하게, 달빛 아래 천천히 머무는 시간</p>
+    <nav aria-label="페이지 내 이동">
+        <ul>
+            <li><a href="#signature">시그니처</a></li>
+            <li><a href="#menu">메뉴</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <section id="signature" aria-labelledby="signature-title">
+        <h2 id="signature-title">시그니처</h2>
+        <ul class="signature-list">
+            <li data-id="moonlight-latte">
+                <h3>문라이트 라떼</h3>
+                <p>달빛을 닮은 바닐라 크림을 올린 대표 라떼</p>
+                <p class="price">HOT 5,300 / ICE 5,800</p>
+            </li>
+            <li data-id="sunset-grapefruit-ade">
+                <h3>노을달 자몽 에이드</h3>
+                <p>저녁노을빛 자몽에 달 모양 얼음을 띄운 에이드</p>
+                <p class="price">ICE 5,800</p>
+            </li>
+            <li data-id="bluemoon-cheesecake">
+                <h3>블루문 치즈케이크</h3>
+                <p>블루베리 소스를 얹은 진하고 부드러운 치즈케이크</p>
+                <p class="price">7,000</p>
+            </li>
+        </ul>
+    </section>
+
+    <section id="menu" aria-labelledby="menu-title">
+        <h2 id="menu-title">메뉴</h2>
+        <div class="table-wrap">
+            <table>
+                <caption>달빛 카페 메뉴 (음료와 디저트)</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">이름</th>
+                        <th scope="col">설명</th>
+                        <th scope="col">가격</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 음료 : 분류 drink, HOT/ICE 가격은 data-hot / data-ice (없으면 제공 안 함) -->
+                    <tr data-id="americano" data-category="drink" data-hot="4000" data-ice="4500">
+                        <th scope="row">아메리카노</th>
+                        <td>고소하고 깔끔한 기본 커피</td>
+                        <td>HOT 4,000 / ICE 4,500</td>
+                    </tr>
+                    <tr data-id="cafe-latte" data-category="drink" data-hot="4800" data-ice="5300">
+                        <th scope="row">카페라떼</th>
+                        <td>에스프레소에 부드러운 우유를 더한 커피</td>
+                        <td>HOT 4,800 / ICE 5,300</td>
+                    </tr>
+                    <tr data-id="moonlight-latte" data-category="drink" data-hot="5300" data-ice="5800" data-signature="true">
+                        <th scope="row">문라이트 라떼 <span class="mark">시그니처</span></th>
+                        <td>달빛을 닮은 바닐라 크림을 올린 대표 라떼</td>
+                        <td>HOT 5,300 / ICE 5,800</td>
+                    </tr>
+                    <tr data-id="cold-brew" data-category="drink" data-ice="5000">
+                        <th scope="row">콜드브루</th>
+                        <td>저온에서 오래 추출한 진한 커피</td>
+                        <td>ICE 5,000</td>
+                    </tr>
+                    <tr data-id="chamomile" data-category="drink" data-hot="5000" data-ice="5500">
+                        <th scope="row">캐모마일</th>
+                        <td>향이 부드러운 허브티</td>
+                        <td>HOT 5,000 / ICE 5,500</td>
+                    </tr>
+                    <tr data-id="earl-grey" data-category="drink" data-hot="5000" data-ice="5500">
+                        <th scope="row">얼그레이</th>
+                        <td>베르가못 향의 클래식 홍차</td>
+                        <td>HOT 5,000 / ICE 5,500</td>
+                    </tr>
+                    <tr data-id="lemon-ade" data-category="drink" data-ice="5500">
+                        <th scope="row">레몬 에이드</th>
+                        <td>상큼한 생레몬 에이드</td>
+                        <td>ICE 5,500</td>
+                    </tr>
+                    <tr data-id="sunset-grapefruit-ade" data-category="drink" data-ice="5800" data-signature="true">
+                        <th scope="row">노을달 자몽 에이드 <span class="mark">시그니처</span></th>
+                        <td>저녁노을빛 자몽에 달 모양 얼음을 띄운 에이드</td>
+                        <td>ICE 5,800</td>
+                    </tr>
+
+                    <!-- 디저트 : 분류 dessert, 단일 가격은 data-price -->
+                    <tr data-id="bluemoon-cheesecake" data-category="dessert" data-price="7000" data-signature="true">
+                        <th scope="row">블루문 치즈케이크 <span class="mark">시그니처</span></th>
+                        <td>블루베리 소스를 얹은 진하고 부드러운 치즈케이크</td>
+                        <td>7,000</td>
+                    </tr>
+                    <tr data-id="croissant" data-category="dessert" data-price="4500">
+                        <th scope="row">크루아상</th>
+                        <td>겹겹이 바삭한 버터 크루아상</td>
+                        <td>4,500</td>
+                    </tr>
+                    <tr data-id="choco-cookie" data-category="dessert" data-price="3500">
+                        <th scope="row">초코칩 쿠키</th>
+                        <td>겉은 바삭하고 속은 촉촉한 쿠키</td>
+                        <td>3,500</td>
+                    </tr>
+                    <tr data-id="madeleine" data-category="dessert" data-price="3000">
+                        <th scope="row">마들렌</th>
+                        <td>버터 향이 가득한 작은 케이크</td>
+                        <td>3,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+<footer id="footer">
+    <p>최종 수정일: 2026-11-20</p>
+</footer>
+
+</body>
+</html>

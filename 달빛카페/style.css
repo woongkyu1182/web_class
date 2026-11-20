@@ -1,0 +1,967 @@
+/* ==========================================================
+   달빛 카페 — 새벽 콘셉트 (밝은 바탕 + 달빛 포인트)
+   모바일 우선, 640px 이상에서 확장
+   ========================================================== */
+
+:root {
+    --bg: #f4f6fa;            /* 안개 낀 새벽 바탕 */
+    --surface: #ffffff;
+    --ink: #232c4a;           /* 본문 글자 */
+    --ink-soft: #5b6486;      /* 보조 글자 */
+    --dawn-navy: #2b3a67;     /* 새벽 남색 */
+    --dawn-violet: #b9b4d9;   /* 연보라 */
+    --dawn-peach: #f6d7c8;    /* 연한 복숭아 */
+    --moon: #f3d98b;          /* 달빛 노랑 */
+    --line: #dfe3ee;
+    --radius: 14px;
+    --gutter: 16px;
+    --content: 860px;         /* 본문 최대 폭 */
+    --font: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+h1, h2, h3, p, ul {
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: inherit;
+}
+
+/* ---------- 헤더 ---------- */
+header {
+    position: relative;
+    overflow: hidden;
+    padding: 56px var(--gutter) 110px;
+    /* 새벽 그라데이션: 남색 → 보라 → 복숭아 */
+    background: linear-gradient(180deg, #232f58 0%, #3b4780 52%, #6f6aa6 80%, var(--dawn-peach) 100%);
+    color: #fff;
+    text-align: center;
+}
+
+/* 아래쪽이 안개처럼 바탕에 스며든다 */
+header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 70px;
+    background: linear-gradient(180deg, rgba(244, 246, 250, 0), var(--bg));
+    pointer-events: none;
+}
+
+/* 글자는 장식 위에 둔다 */
+header > h1,
+header > .intro,
+header > nav {
+    position: relative;
+    z-index: 2;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    animation: rise 1.4s ease-out both;
+}
+
+header .intro {
+    margin-top: 10px;
+    color: #dcd8f0;
+    font-weight: 300;
+    animation: rise 1.4s ease-out 0.25s both;
+}
+
+header nav {
+    animation: rise 1.4s ease-out 0.5s both;
+}
+
+/* ---------- 하늘 장식 (별 · 달빛 · 안개) ---------- */
+.sky {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* 별: 작은 점을 타일처럼 반복, 두 겹이 서로 다른 박자로 깜빡인다 */
+.sky::before,
+.sky::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 40% 0;
+}
+
+.sky::before {
+    background-image:
+        radial-gradient(1.5px 1.5px at 24px 30px, #fff, transparent),
+        radial-gradient(1px 1px at 90px 80px, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 150px 20px, #fff, transparent),
+        radial-gradient(1px 1px at 200px 100px, #fff, transparent);
+    background-size: 240px 130px;
+    animation: twinkle 5s ease-in-out infinite alternate;
+}
+
+.sky::after {
+    background-image:
+        radial-gradient(1px 1px at 60px 50px, #f3e9c0, transparent),
+        radial-gradient(1.5px 1.5px at 130px 110px, #fff, transparent),
+        radial-gradient(1px 1px at 210px 60px, #f3e9c0, transparent);
+    background-size: 280px 150px;
+    animation: twinkle 7s ease-in-out 1.5s infinite alternate;
+}
+
+/* 달빛: 아주 느리게 숨 쉬듯 */
+.moon {
+    position: absolute;
+    top: 24px;
+    right: 9%;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--moon);
+    box-shadow: 0 0 14px 2px rgba(243, 217, 139, 0.5);
+}
+
+.moon::after {
+    content: "";
+    position: absolute;
+    inset: -26px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(243, 217, 139, 0.35), transparent 70%);
+    animation: glow 9s ease-in-out infinite alternate;
+}
+
+/* 안개: 가로로 천천히 흐른다 (폭 200%, 절반만큼 이동하면 처음과 같다) */
+.mist {
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    width: 200%;
+    height: 130px;
+    background-image:
+        radial-gradient(ellipse 160px 34px at 30% 62%, rgba(255, 255, 255, 0.22), transparent),
+        radial-gradient(ellipse 220px 40px at 75% 40%, rgba(255, 240, 235, 0.2), transparent);
+    background-size: 50% 100%;
+    background-repeat: repeat-x;
+    animation: drift 70s linear infinite;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.25; }
+    to   { opacity: 0.95; }
+}
+
+@keyframes glow {
+    from { opacity: 0.45; transform: scale(0.92); }
+    to   { opacity: 1;    transform: scale(1.08); }
+}
+
+@keyframes drift {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+@keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* 움직임 줄이기 설정을 켠 사용자에게는 모든 움직임을 끈다 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+header nav {
+    margin-top: 28px;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+header nav a {
+    display: inline-block;
+    padding: 6px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    color: #fff;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+header nav a:hover,
+header nav a:focus-visible {
+    background: var(--moon);
+    border-color: var(--moon);
+    color: var(--dawn-navy);
+}
+
+/* ---------- 본문 공통 ---------- */
+main {
+    max-width: var(--content);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+}
+
+section {
+    padding: 48px 0 8px;
+}
+
+section h2 {
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--moon);
+    display: inline-block;
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+}
+
+/* ---------- 시그니처 ---------- */
+.signature-list {
+    display: grid;
+    gap: 12px;
+}
+
+.signature-list li {
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--moon);
+    border-radius: var(--radius);
+    background: var(--surface);
+}
+
+.signature-list h3 {
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+.signature-list p {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+}
+
+.signature-list .price {
+    margin-top: 6px;
+    color: var(--dawn-navy);
+    font-weight: 500;
+}
+
+/* hidden 속성이 표시 방식에 덮어쓰이지 않게 한다 */
+[hidden] {
+    display: none !important;
+}
+
+/* ---------- 분류 탭 (JS가 만든다) ---------- */
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.tab {
+    padding: 7px 20px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink-soft);
+    font: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.tab:hover {
+    border-color: var(--dawn-violet);
+}
+
+.tab.is-selected {
+    border-color: var(--dawn-navy);
+    background: var(--dawn-navy);
+    color: #fff;
+}
+
+.tab:focus-visible {
+    outline: 3px solid var(--moon);
+    outline-offset: 2px;
+}
+
+/* ---------- 메뉴 표 (모바일: 카드형) ---------- */
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+}
+
+tbody tr {
+    display: block;
+    margin-bottom: 10px;
+    padding: 14px 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+}
+
+tbody th,
+tbody td {
+    display: block;
+    padding: 0;
+    text-align: left;
+    word-break: keep-all;
+}
+
+tbody th {
+    font-weight: 500;
+}
+
+tbody td {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+}
+
+tbody td:nth-child(3) {
+    margin-top: 4px;
+    color: var(--dawn-navy);
+    font-weight: 500;
+}
+
+/* ---------- 옵션 선택 · 담기 (JS가 만든다) ---------- */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+tbody td.order {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.options {
+    display: flex;
+    gap: 6px;
+}
+
+.opt {
+    min-width: 56px;
+    min-height: 36px;
+    padding: 6px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink-soft);
+    font: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.opt.is-selected {
+    border-color: var(--dawn-navy);
+    background: var(--dawn-navy);
+    color: #fff;
+}
+
+.opt:disabled {
+    border-style: dashed;
+    background: transparent;
+    color: #a9afc4;
+    cursor: not-allowed;
+}
+
+.add {
+    margin-left: auto;
+    min-height: 36px;
+    padding: 7px 18px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--moon);
+    color: var(--dawn-navy);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.add:hover {
+    background: #f0cf70;
+}
+
+.add:active {
+    transform: scale(0.96);
+}
+
+/* 담았을 때: 달빛이 한 번 번지듯 */
+.add.added {
+    animation: added-glow 0.7s ease-out;
+}
+
+@keyframes added-glow {
+    from { box-shadow: 0 0 0 0 rgba(243, 217, 139, 0.8); }
+    to   { box-shadow: 0 0 0 14px rgba(243, 217, 139, 0); }
+}
+
+/* 스크롤하면 부드럽게 떠오름 (class는 JS가 붙인다) */
+.reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.opt:focus-visible,
+.add:focus-visible {
+    outline: 3px solid var(--dawn-navy);
+    outline-offset: 2px;
+}
+
+/* ---------- 하단 장바구니 바 ---------- */
+body.has-cart {
+    padding-bottom: 76px;
+}
+
+.cart-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    padding: 0 var(--gutter) env(safe-area-inset-bottom, 0px);
+    background: var(--dawn-navy);
+    color: #fff;
+    box-shadow: 0 -4px 18px rgba(35, 44, 74, 0.18);
+    animation: bar-up 0.6s ease-out both;
+}
+
+.cart-bar.bump {
+    animation: bar-bump 0.45s ease-out;
+}
+
+.cart-bar-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: var(--content);
+    margin: 0 auto;
+    padding: 15px 0;   /* 바 전체 높이가 눌리는 영역이 된다 */
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.cart-count {
+    margin-right: auto;
+}
+
+.cart-total {
+    color: var(--moon);
+    font-weight: 500;
+}
+
+.cart-view {
+    padding: 3px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 999px;
+    font-size: 0.8rem;
+}
+
+.cart-bar-inner:focus-visible {
+    outline: 3px solid var(--moon);
+    outline-offset: 4px;
+}
+
+/* ---------- 장바구니 패널 (dialog) ---------- */
+body.dialog-open {
+    overflow: hidden;
+}
+
+.cart-dialog {
+    width: 100%;
+    max-width: 560px;
+    max-height: 82vh;
+    margin: auto auto 0;
+    padding: 0;
+    border: 0;
+    border-radius: 22px 22px 0 0;
+    background: var(--surface);
+    color: var(--ink);
+    overflow: auto;
+}
+
+.cart-dialog[open] {
+    animation: sheet-up 0.45s ease-out both;
+}
+
+.cart-dialog::backdrop {
+    background: rgba(35, 44, 74, 0.5);
+}
+
+.cart-sheet {
+    padding: 22px var(--gutter) calc(26px + env(safe-area-inset-bottom, 0px));
+}
+
+.cart-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.cart-head h2 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 1.15rem;
+}
+
+.cart-close {
+    padding: 5px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink-soft);
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.cart-empty {
+    padding: 28px 0;
+    color: var(--ink-soft);
+    text-align: center;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 6px 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.item-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 8px;
+    word-break: keep-all;
+}
+
+.item-opt {
+    padding: 0 8px;
+    border-radius: 999px;
+    background: var(--dawn-peach);
+    color: var(--dawn-navy);
+    font-size: 0.72rem;
+}
+
+.item-unit {
+    flex-basis: 100%;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+}
+
+.item-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.qty-btn {
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--dawn-navy);
+    font: inherit;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.qty-btn:disabled {
+    color: #a9afc4;
+    cursor: not-allowed;
+}
+
+.item-qty {
+    min-width: 26px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.item-line {
+    color: var(--dawn-navy);
+    font-weight: 500;
+}
+
+.item-remove {
+    justify-self: end;
+    padding: 8px 4px;
+    border: 0;
+    background: none;
+    color: var(--ink-soft);
+    font: inherit;
+    font-size: 0.82rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cart-sum {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: 16px;
+    font-size: 1.05rem;
+}
+
+.cart-sum-value {
+    color: var(--dawn-navy);
+    font-size: 1.2rem;
+}
+
+/* ---------- 테이블 번호 · 주문하기 ---------- */
+.order-form {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--line);
+}
+
+.order-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.order-form input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--bg);
+    color: var(--ink);
+    font: inherit;
+    font-size: 1.05rem;
+}
+
+.order-form input:focus-visible {
+    outline: 3px solid var(--moon);
+    outline-offset: 1px;
+    border-color: var(--dawn-navy);
+}
+
+.order-form input[aria-invalid="true"] {
+    border-color: #b3402a;
+}
+
+.field-hint {
+    margin-top: 6px;
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+}
+
+.field-error {
+    margin-top: 6px;
+    color: #b3402a;
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+
+.order-submit {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    padding: 13px 16px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--dawn-navy);
+    color: #fff;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.order-submit:hover {
+    background: #36477e;
+}
+
+.order-submit:active {
+    transform: scale(0.98);
+}
+
+.order-submit:focus-visible {
+    outline: 3px solid var(--moon);
+    outline-offset: 3px;
+}
+
+/* ---------- 주문 완료 화면 ---------- */
+.order-done {
+    padding-top: 6px;
+    text-align: center;
+}
+
+.order-done:not([hidden]) {
+    animation: rise 0.8s ease-out both;
+}
+
+/* 완료 화면: 달이 천천히 떠오른다 */
+.done-moon {
+    width: 46px;
+    height: 46px;
+    margin: 4px auto 8px;
+    border-radius: 50%;
+    background: var(--moon);
+    box-shadow: 0 0 18px 4px rgba(243, 217, 139, 0.55);
+    animation: moonrise 1.8s ease-out both;
+}
+
+@keyframes moonrise {
+    from { transform: translateY(36px); opacity: 0; }
+    to   { transform: none; opacity: 1; }
+}
+
+.done-title {
+    margin: 10px 0 4px;
+    color: var(--dawn-navy);
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.done-title:focus {
+    outline: none;
+}
+
+.done-where {
+    color: var(--ink-soft);
+}
+
+.done-items {
+    margin: 18px 0 6px;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    background: var(--bg);
+    text-align: left;
+    word-break: keep-all;
+}
+
+.done-items li + li {
+    margin-top: 4px;
+}
+
+.order-done .cart-sum {
+    margin-top: 12px;
+}
+
+.done-note {
+    margin-top: 18px;
+}
+
+.done-demo {
+    margin-top: 6px;
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+}
+
+.cart-close:focus-visible,
+.qty-btn:focus-visible,
+.item-remove:focus-visible {
+    outline: 3px solid var(--dawn-navy);
+    outline-offset: 2px;
+}
+
+@keyframes sheet-up {
+    from { transform: translateY(40px); opacity: 0; }
+    to   { transform: none; opacity: 1; }
+}
+
+@keyframes bar-up {
+    from { transform: translateY(100%); }
+    to   { transform: none; }
+}
+
+@keyframes bar-bump {
+    0%   { transform: translateY(0); }
+    35%  { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+.mark {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 0 8px;
+    border-radius: 999px;
+    background: var(--moon);
+    color: var(--dawn-navy);
+    font-size: 0.72rem;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+/* ---------- 푸터 ---------- */
+footer {
+    margin-top: 56px;
+    padding: 28px var(--gutter);
+    background: var(--dawn-navy);
+    color: var(--dawn-violet);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* ---------- 키보드 포커스 ---------- */
+a:focus-visible {
+    outline: 3px solid var(--moon);
+    outline-offset: 2px;
+}
+
+/* ---------- 640px 이상: 표를 일반 표로 ---------- */
+@media (min-width: 641px) {
+    header {
+        padding: 80px var(--gutter) 130px;
+    }
+
+    header h1 {
+        font-size: 2.6rem;
+    }
+
+    .signature-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    thead {
+        position: static;
+        width: auto;
+        height: auto;
+        overflow: visible;
+        clip-path: none;
+    }
+
+    table {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        border-collapse: separate;
+        border-spacing: 0;
+        overflow: hidden;
+    }
+
+    thead th {
+        padding: 12px 16px;
+        background: var(--dawn-peach);
+        color: var(--dawn-navy);
+        font-weight: 500;
+        text-align: left;
+    }
+
+    /* 표 행은 투명도만 바꾼다 (이동은 카드형일 때만) */
+    tbody tr.reveal {
+        transform: none;
+    }
+
+    tbody tr {
+        display: table-row;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+    }
+
+    tbody th,
+    tbody td {
+        display: table-cell;
+        padding: 14px 16px;
+        border-top: 1px solid var(--line);
+    }
+
+    tbody td:nth-child(3) {
+        margin-top: 0;
+        white-space: nowrap;
+    }
+
+    tbody td.order {
+        display: table-cell;
+        margin-top: 0;
+        white-space: nowrap;
+    }
+
+    tbody td.order .options {
+        display: inline-flex;
+        margin-right: 8px;
+        vertical-align: middle;
+    }
+
+    tbody td.order .add {
+        margin-left: 0;
+        vertical-align: middle;
+    }
+}
